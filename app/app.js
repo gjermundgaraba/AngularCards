@@ -1,3 +1,2 @@
-/**
- * Created by bjaanes on 26/02/15.
- */
+
+angular.module('cards-app', ['cards-module']);

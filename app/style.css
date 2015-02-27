@@ -1,0 +1,14 @@
+
+.card {
+    width: 200px;
+    height: 200px;
+    border: 1px solid;
+    float: left;
+    margin: 10px;
+    padding: 10px;
+}
+
+.card h1 {
+    font-size: 1.6em;
+}
+
