@@ -2,20 +2,24 @@
 <html ng-app="cards-app">
 <head>
     <meta charset="utf-8">
-    <title>My AngularJS App</title>
+    <title>AngularCards</title>
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
+
+    <site-nav></site-nav>
 
     <cards-container></cards-container>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="app.js"></script>
-    <script src="cards-module.js"></script>
+    <script src="cards-module/cards-module.js"></script>
+    <script src="siteNav-module/siteNav-module.js"></script>
 </body>
 </html>

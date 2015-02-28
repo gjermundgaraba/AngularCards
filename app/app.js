@@ -1,2 +1,2 @@
 
-angular.module('cards-app', ['cards-module']);
+angular.module('cards-app', ['cards-module', 'siteNav-module']);
