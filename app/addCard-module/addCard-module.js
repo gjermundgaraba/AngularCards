@@ -1,11 +1,10 @@
 angular.module('addCard-module', [])
     .controller('AddCardController', function ($scope, $modalInstance, $rootScope) {
 
-        $scope.title = '';
-        $scope.body = '';
+        $scope.newCard = { title: '', body: ''};
 
         $scope.ok = function () {
-            $rootScope.$broadcast('newCardEvent', { title: $scope.title, body: $scope.body});
+            $rootScope.$broadcast('newCardEvent', $scope.newCard);
             $modalInstance.close();
         };
 

@@ -1,15 +1,15 @@
 
-angular.module('cards-module', [])
-.controller('CardsController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+angular.module('cards-module', ['cardService-module'])
+.controller('CardsController', function($scope, $rootScope, CardService) {
     $scope.cards = [];
-    $http.get('cards-module/cards_data.json').success(function(data) {
+    CardService.all().success(function(data) {
         $scope.cards = data;
     });
 
     $rootScope.$on('newCardEvent', function(event, data) {
        $scope.cards.unshift(data);
     });
-}])
+})
 .directive('cardsContainer', function() {
     return {
         restrict: 'E',
