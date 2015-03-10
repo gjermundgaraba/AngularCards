@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="card" ng-repeat="card in cards">
+    <div class="card" ng-repeat="card in cards | orderBy:'createdAt':true">
         <h1>{{card.title}}</h1>
         <p>{{card.body}}</p>
     </div>

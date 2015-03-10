@@ -4,6 +4,7 @@ angular.module('addCard-module', [])
         $scope.newCard = { title: '', body: ''};
 
         $scope.ok = function () {
+            $scope.newCard.createdAt = +new Date();
             $rootScope.$broadcast('newCardEvent', $scope.newCard);
             $modalInstance.close();
         };
