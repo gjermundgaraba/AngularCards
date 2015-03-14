@@ -1,6 +1,8 @@
 # AngularCards
 This is basically my first 'real' test project for AngularJS
 
+I created this for the purpose of learning AngularJS. I also wound up using some Node.js, Express.js and MongoDB.
+
 Setting up
 -------------
 You need:
