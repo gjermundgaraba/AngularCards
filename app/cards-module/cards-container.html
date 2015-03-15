@@ -2,5 +2,6 @@
     <div class="card" ng-repeat="card in cards | orderBy:'createdAt':true">
         <h1>{{card.title}}</h1>
         <p>{{card.body}}</p>
+        <span class='close-btn'><a href ng-click="deleteCard(card)">x</a></span>
     </div>
 </div>

@@ -7,6 +7,9 @@ angular.module('cardService-module', [])
             },
             postCard: function(card) {
                 return $http.post('/cards', card);
+            },
+            deleteCard: function(card) {
+                return $http.delete('/cards/' + card._id);
             }
         }
     });

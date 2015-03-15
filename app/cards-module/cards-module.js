@@ -9,6 +9,12 @@ angular.module('cards-module', ['cardService-module'])
         });
     };
 
+    $scope.deleteCard = function(card) {
+        CardService.deleteCard(card).success(function() {
+            controller.fetchAllCards();
+        });
+    };
+
     $rootScope.$on('newCardEvent', function(event, data) {
         CardService.postCard(data).success(function() {
             controller.fetchAllCards();

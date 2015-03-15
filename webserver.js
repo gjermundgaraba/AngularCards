@@ -4,7 +4,9 @@ var app = express();
 
 var databaseUrl = "mydb";
 var collections = ["cards"];
-var db = require("mongojs").connect(databaseUrl, collections);
+var mongojs = require("mongojs");
+var ObjectId = mongojs.ObjectId;
+var db = mongojs.connect(databaseUrl, collections);
 
 app.use(bodyParser.json());
 app.use(express.static('app'));
@@ -24,9 +26,24 @@ app.get('/cards', function(request, response) {
 
 app.post('/cards', function(request, response) {
     db.cards.save(request.body, function(err, saved) {
-        if( err || !saved ) console.log("Card not saved");
+        if( err || !saved ) console.log("Card not saved: " + err);
         else console.log("Card saved");
-        response.end();
+        response.sendStatus(200);
+    });
+});
+
+app.delete('/cards/:id', function(request, response) {
+    var id = request.params.id;
+    console.log("Deleting: " + id);
+    db.cards.remove({_id: ObjectId(id)}, function(err) {
+        if (!err) {
+            console.log("Deleted!");
+            response.sendStatus(200);
+        } else {
+            console.log("Could not delete: " + err);
+            response.sendStatus(500);
+        }
+
     });
 });
 
