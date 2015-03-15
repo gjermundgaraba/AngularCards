@@ -12,20 +12,30 @@ describe('cards-module', function() {
             rootScope = $rootScope.$new();
             scope = $rootScope.$new();
 
+            var cards = [
+                {
+                    "title": "This is a title",
+                    "body": "This is a body"
+                },
+                {
+                    "title": "This some other title",
+                    "body": "This is a body or something Yes Yes Yes Yes Yes"
+                }
+            ];
+
             cardServiceMock = {
                 all: function () {
                     return {
                         success: function(func) {
-                            func([
-                                {
-                                    "title": "This is a title",
-                                    "body": "This is a body"
-                                },
-                                {
-                                    "title": "This some other title",
-                                    "body": "This is a body or something Yes Yes Yes Yes Yes"
-                                }
-                            ]);
+                            func(cards);
+                        }
+                    };
+                },
+                postCard: function(card) {
+                    cards.push(card);
+                    return {
+                        success: function(func) {
+                            func();
                         }
                     };
                 }

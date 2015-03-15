@@ -10,7 +10,7 @@ describe('cardsService-module', function() {
 
         beforeEach(inject(function($httpBackend, CardService) {
             httpBackend = $httpBackend;
-            httpBackend.when('GET', 'cards-module/cards_data.json').respond([
+            httpBackend.when('GET', '/cards').respond([
                 {
                     "title": "This is a title",
                     "body": "This is a body"
@@ -24,7 +24,7 @@ describe('cardsService-module', function() {
         }));
 
         it('should GET cards', function() {
-            httpBackend.expectGET('cards-module/cards_data.json');
+            httpBackend.expectGET('/cards');
             CardServiceTestObject.all().success(function(data){});
             httpBackend.flush();
         });
