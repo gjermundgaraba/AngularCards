@@ -2,7 +2,7 @@
 
 describe('cards-module', function() {
 
-    beforeEach(module('cards-module'));
+    beforeEach(module('app.cards'));
 
     describe('Cards-module controller', function(){
 

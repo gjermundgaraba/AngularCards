@@ -1,2 +1,8 @@
+(function() {
+    'use strict';
 
-angular.module('cards-app', ['ui.bootstrap', 'cards-module', 'siteNav-module']);
+    angular.module('app', [
+        'ui.bootstrap',
+        'app.cards',
+        'app.siteNav']);
+})();

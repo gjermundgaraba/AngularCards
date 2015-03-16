@@ -10,6 +10,7 @@ var db = mongojs.connect(databaseUrl, collections);
 
 app.use(bodyParser.json());
 app.use(express.static('app'));
+app.use('/bower_components', express.static('bower_components'));
 
 app.get('/cards', function(request, response) {
     db.cards.find(function(err, cards) {

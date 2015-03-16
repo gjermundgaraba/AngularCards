@@ -1,10 +1,10 @@
 'use strict';
 
-describe('addCard-module', function() {
+describe('addCard module', function() {
 
-    beforeEach(module('addCard-module'));
+    beforeEach(module('app.addCard'));
 
-    describe('addCard-module controller', function(){
+    describe('addCard module controller', function(){
 
         var scope, rootScope, modalInstance, ctrl;
 

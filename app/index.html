@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html ng-app="cards-app">
+<html ng-app="app">
 <head>
     <meta charset="utf-8">
     <title>AngularCards</title>
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/bower_components/html5-boilerplate/css/normalize.css">
+    <link rel="stylesheet" href="/bower_components/html5-boilerplate/css/main.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
-    <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="/bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
 
@@ -16,13 +16,16 @@
 
     <cards-container></cards-container>
 
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="app.js"></script>
-    <script src="cards-module/cards-module.js"></script>
-    <script src="siteNav-module/siteNav-module.js"></script>
-    <script src="addCard-module/addCard-module.js"></script>
-    <script src="cardService-module/cardService-module.js"></script>
+    <script src="cards/cards.module.js"></script>
+    <script src="cards/cards.js"></script>
+    <script src="navigation/siteNav.module.js"></script>
+    <script src="addCard/addCard.module.js"></script>
+    <script src="addCard/addCard.js"></script>
+    <script src="cardService/cardService.module.js"></script>
+    <script src="cardService/cardService.js"></script>
 </body>
 </html>

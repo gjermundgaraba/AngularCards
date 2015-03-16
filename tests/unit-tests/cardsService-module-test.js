@@ -1,10 +1,10 @@
 'use strict';
 
-describe('cardsService-module', function() {
+describe('cardsService', function() {
 
-    beforeEach(module('cardService-module'));
+    beforeEach(module('app.cardService'));
 
-    describe('cardService-module service', function(){
+    describe('cardService module service', function(){
 
         var httpBackend, CardServiceTestObject;
 
