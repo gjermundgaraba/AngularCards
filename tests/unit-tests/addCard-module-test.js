@@ -6,7 +6,7 @@ describe('addCard module', function() {
 
     describe('addCard module controller', function(){
 
-        var scope, rootScope, modalInstance, ctrl;
+        var scope, rootScope, modalInstance, ctrl, cardServiceMock, testCard;
 
         beforeEach(inject(function($rootScope, $controller) {
             rootScope = $rootScope.$new();
@@ -16,9 +16,29 @@ describe('addCard module', function() {
                 dismiss: function() {}
             };
 
+            testCard = { title: '', body: '', createdAt: '12345678'};
+
+            cardServiceMock = {
+                all: function () {
+                    return {
+                        success: function(func) {
+                            func(cards);
+                        }
+                    };
+                },
+                postCard: function(card) {
+                    return {
+                        success: function(func) {
+                            $rootScope.$broadcast('newCardEvent', testCard);
+                            func();
+                        }
+                    };
+                }
+            };
+
             spyOn(rootScope, '$broadcast').andCallThrough();;
 
-            ctrl = $controller('AddCardController', {$scope: scope, $modalInstance: modalInstance, $rootScope: rootScope});
+            ctrl = $controller('AddCardController', {$scope: scope, $modalInstance: modalInstance, $rootScope: rootScope, CardService: cardServiceMock});
         }));
 
         it('should have empty card', function() {

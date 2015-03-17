@@ -30,14 +30,6 @@ describe('cards-module', function() {
                             func(cards);
                         }
                     };
-                },
-                postCard: function(card) {
-                    cards.push(card);
-                    return {
-                        success: function(func) {
-                            func();
-                        }
-                    };
                 }
             };
 
@@ -48,10 +40,10 @@ describe('cards-module', function() {
             expect(scope.cards.length).toBe(2);
         });
 
-        it('should add card on newCardEvent', function() {
-            expect(scope.cards.length).toBe(2);
+        it('should refresh on newCardEvent', function() {
+            spyOn(ctrl, 'fetchAllCards');
             rootScope.$broadcast('newCardEvent', {"title": "Test", "body" : "Test"});
-            expect(scope.cards.length).toBe(3);
+            expect(ctrl.fetchAllCards).toHaveBeenCalled();
         });
 
     });

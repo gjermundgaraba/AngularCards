@@ -17,10 +17,8 @@
                 });
             };
 
-            $rootScope.$on('newCardEvent', function (event, data) {
-                CardService.postCard(data).success(function () {
-                    controller.fetchAllCards();
-                });
+            $rootScope.$on('newCardEvent', function () {
+                controller.fetchAllCards();
             });
 
             controller.fetchAllCards()

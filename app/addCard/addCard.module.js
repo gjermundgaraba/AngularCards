@@ -1,5 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('app.addCard', []);
+    angular.module('app.addCard', ['ui.bootstrap', 'app.cardService']);
 })();
