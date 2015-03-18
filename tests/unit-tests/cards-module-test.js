@@ -6,11 +6,10 @@ describe('cards-module', function() {
 
     describe('Cards-module controller', function(){
 
-        var scope, rootScope, ctrl, cardServiceMock;
+        var rootScope, ctrl, cardServiceMock;
 
         beforeEach(inject(function($rootScope, $controller) {
             rootScope = $rootScope.$new();
-            scope = $rootScope.$new();
 
             var cards = [
                 {
@@ -33,11 +32,11 @@ describe('cards-module', function() {
                 }
             };
 
-            ctrl = $controller('CardsController', {$scope: scope, $rootScope: rootScope, CardService: cardServiceMock});
+            ctrl = $controller('CardsController', {$rootScope: rootScope, CardService: cardServiceMock});
         }));
 
         it('should have 2  cards', function() {
-            expect(scope.cards.length).toBe(2);
+            expect(ctrl.cards.length).toBe(2);
         });
 
         it('should refresh on newCardEvent', function() {

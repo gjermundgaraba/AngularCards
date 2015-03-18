@@ -2,20 +2,25 @@
     'use strict';
 
     angular.module('app.addCard')
-        .controller('AddCardController', function ($scope, $modalInstance, $rootScope, CardService) {
+        .controller('AddCardController', AddCardController);
 
-            $scope.newCard = { title: '', body: ''};
+    AddCardController.$inject = ['$scope', '$modalInstance', '$rootScope', 'CardService'];
 
-            $scope.ok = function () {
-                $scope.newCard.createdAt = +new Date();
-                CardService.postCard($scope.newCard).success(function () {
-                    $rootScope.$broadcast('newCardEvent', $scope.newCard);
-                });
-                $modalInstance.close();
-            };
+    function AddCardController($scope, $modalInstance, $rootScope, CardService) {
+        $scope.newCard = { title: '', body: ''};
+        $scope.ok = ok;
+        $scope.cancel = cancel;
 
-            $scope.cancel = function () {
-                $modalInstance.dismiss();
-            };
-        });
+        function ok() {
+            $scope.newCard.createdAt = +new Date();
+            CardService.postCard($scope.newCard).success(function () {
+                $rootScope.$broadcast('newCardEvent', $scope.newCard);
+            });
+            $modalInstance.close();
+        }
+
+        function cancel() {
+            $modalInstance.dismiss();
+        }
+    }
 })();

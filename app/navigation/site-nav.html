@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="SiteNavController as siteNavCtrl">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -12,7 +12,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#" ng-click="open()"><i class="glyphicon glyphicon-plus"></i> New Card</a></li>
+                <li><a href="#" ng-click="siteNavCtrl.open()"><i class="glyphicon glyphicon-plus"></i> New Card</a></li>
             </ul>
         </div>
     </div>

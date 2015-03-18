@@ -2,32 +2,41 @@
     'use strict';
 
     angular.module('app.cards')
-        .controller('CardsController', function ($scope, $rootScope, CardService) {
-            $scope.cards = [];
-            var controller = this;
-            controller.fetchAllCards = function () {
-                CardService.all().success(function (data) {
-                    $scope.cards = data;
-                });
-            };
+        .controller('CardsController', CardsController)
+        .directive('cardsContainer', cardsContainerDirective);
 
-            $scope.deleteCard = function (card) {
-                CardService.deleteCard(card).success(function () {
-                    controller.fetchAllCards();
-                });
-            };
+    CardsController.$inject = ['$rootScope', 'CardService'];
 
-            $rootScope.$on('newCardEvent', function () {
+    function CardsController($rootScope, CardService) {
+        var controller = this;
+
+        controller.cards = [];
+        controller.deleteCard = deleteCard;
+        controller.fetchAllCards = fetchAllCards;
+
+        $rootScope.$on('newCardEvent', function () {
+            controller.fetchAllCards();
+        });
+
+        controller.fetchAllCards();
+
+        function fetchAllCards() {
+            CardService.all().success(function (data) {
+                controller.cards = data;
+            });
+        }
+
+        function deleteCard(card) {
+            CardService.deleteCard(card).success(function () {
                 controller.fetchAllCards();
             });
+        }
+    }
 
-            controller.fetchAllCards()
-        })
-        .directive('cardsContainer', function () {
-            return {
-                restrict: 'E',
-                templateUrl: 'cards/cards-container.html',
-                controller: 'CardsController'
-            };
-        });
+    function cardsContainerDirective() {
+        return {
+            restrict: 'E',
+            templateUrl: 'cards/cards-container.html'
+        };
+    }
 })();

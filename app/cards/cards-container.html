@@ -1,7 +1,7 @@
-<div class="container">
-    <div class="card" ng-repeat="card in cards | orderBy:'createdAt':true">
+<div class="container" ng-controller="CardsController as cardsCtrl">
+    <div class="card" ng-repeat="card in cardsCtrl.cards | orderBy:'createdAt':true">
         <h1>{{card.title}}</h1>
         <p>{{card.body}}</p>
-        <span class='close-btn'><a href ng-click="deleteCard(card)">x</a></span>
+        <span class='close-btn'><a href ng-click="cardsCtrl.deleteCard(card)">x</a></span>
     </div>
 </div>
