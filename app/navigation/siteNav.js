@@ -1,5 +1,6 @@
 (function() {
     'use strict';
+
     angular
         .module('app.siteNav')
         .controller('SiteNavController', SiteNavController)
