@@ -14,6 +14,7 @@
             $modal.open({
                 templateUrl: '../addCard/addCardModal.html',
                 controller: 'AddCardController',
+                controllerAs: 'AddCardCtrl',
                 size: 'sm'
             });
         };

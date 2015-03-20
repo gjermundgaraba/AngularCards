@@ -6,11 +6,10 @@ describe('addCard module', function() {
 
     describe('addCard module controller', function(){
 
-        var scope, rootScope, modalInstance, ctrl, cardServiceMock, testCard;
+        var rootScope, modalInstance, ctrl, cardServiceMock, testCard;
 
         beforeEach(inject(function($rootScope, $controller) {
             rootScope = $rootScope.$new();
-            scope = $rootScope.$new();
             modalInstance = {
                 close: function() {},
                 dismiss: function() {}
@@ -38,17 +37,17 @@ describe('addCard module', function() {
 
             spyOn(rootScope, '$broadcast').andCallThrough();;
 
-            ctrl = $controller('AddCardController', {$scope: scope, $modalInstance: modalInstance, $rootScope: rootScope, CardService: cardServiceMock});
+            ctrl = $controller('AddCardController', {$modalInstance: modalInstance, $rootScope: rootScope, CardService: cardServiceMock});
         }));
 
         it('should have empty card', function() {
-            expect(scope.newCard.title).toBe('');
-            expect(scope.newCard.body).toBe('');
+            expect(ctrl.newCard.title).toBe('');
+            expect(ctrl.newCard.body).toBe('');
         });
 
         it('should broadcast newCardEvent on ok', function() {
-            scope.ok();
-            expect(rootScope.$broadcast).toHaveBeenCalledWith('newCardEvent', scope.newCard);
+            ctrl.ok();
+            expect(rootScope.$broadcast).toHaveBeenCalledWith('newCardEvent', ctrl.newCard);
         });
 
     });
