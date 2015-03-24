@@ -4,17 +4,18 @@
     angular.module('app.addCard')
         .controller('AddCardController', AddCardController);
 
-    AddCardController.$inject = ['$scope', '$modalInstance', '$rootScope', 'CardService'];
+    AddCardController.$inject = ['$modalInstance', '$rootScope', 'CardService'];
 
-    function AddCardController($scope, $modalInstance, $rootScope, CardService) {
-        $scope.newCard = { title: '', body: ''};
-        $scope.ok = ok;
-        $scope.cancel = cancel;
+    function AddCardController($modalInstance, $rootScope, CardService) {
+        var vm = this;
+        vm.newCard = { title: '', body: '', createdAt: ''};
+        vm.ok = ok;
+        vm.cancel = cancel;
 
         function ok() {
-            $scope.newCard.createdAt = +new Date();
-            CardService.postCard($scope.newCard).success(function () {
-                $rootScope.$broadcast('newCardEvent', $scope.newCard);
+            vm.newCard.createdAt = +new Date();
+            CardService.postCard(vm.newCard).success(function () {
+                $rootScope.$broadcast('newCardEvent', vm.newCard);
             });
             $modalInstance.close();
         }

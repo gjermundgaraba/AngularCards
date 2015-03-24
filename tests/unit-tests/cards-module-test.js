@@ -1,49 +1,56 @@
 'use strict';
 
-describe('cards-module', function() {
+describe('Cards-module controller', function(){
+
+    var rootScope, ctrl, cardService;
 
     beforeEach(module('app.cards'));
+    beforeEach(inject(function($rootScope, $controller, CardService) {
+        rootScope = $rootScope.$new();
+        cardService = CardService;
 
-    describe('Cards-module controller', function(){
+        var cards = [
+            {
+                "title": "This is a title",
+                "body": "This is a body"
+            },
+            {
+                "title": "This some other title",
+                "body": "This is a body or something"
+            }
+        ];
 
-        var rootScope, ctrl, cardServiceMock;
+        spyOn(cardService, 'all').andReturn({
+                success: function(func) {
+                    func(cards);
+                }});
 
-        beforeEach(inject(function($rootScope, $controller) {
-            rootScope = $rootScope.$new();
+        ctrl = $controller('CardsController', {$rootScope: rootScope, CardService: CardService});
+    }));
 
-            var cards = [
-                {
-                    "title": "This is a title",
-                    "body": "This is a body"
-                },
-                {
-                    "title": "This some other title",
-                    "body": "This is a body or something Yes Yes Yes Yes Yes"
-                }
-            ];
-
-            cardServiceMock = {
-                all: function () {
-                    return {
-                        success: function(func) {
-                            func(cards);
-                        }
-                    };
-                }
-            };
-
-            ctrl = $controller('CardsController', {$rootScope: rootScope, CardService: cardServiceMock});
-        }));
-
-        it('should have 2  cards', function() {
-            expect(ctrl.cards.length).toBe(2);
-        });
-
-        it('should refresh on newCardEvent', function() {
-            spyOn(ctrl, 'fetchAllCards');
-            rootScope.$broadcast('newCardEvent', {"title": "Test", "body" : "Test"});
-            expect(ctrl.fetchAllCards).toHaveBeenCalled();
-        });
-
+    it('should have 2 cards', function() {
+        expect(ctrl.cards.length).toBe(2);
     });
+
+    it('should refresh on newCardEvent', function() {
+        spyOn(ctrl, 'fetchAllCards');
+
+        rootScope.$broadcast('newCardEvent', {"title": "Test", "body" : "Test"});
+
+        expect(ctrl.fetchAllCards).toHaveBeenCalled();
+    });
+
+    it('should refresh on delete', function() {
+        spyOn(ctrl, 'fetchAllCards');
+        spyOn(cardService, 'deleteCard').andReturn({
+            success: function(func) {
+                func();
+            }
+        });
+
+        ctrl.deleteCard({"title": "Test", "body" : "Test"});
+
+        expect(ctrl.fetchAllCards).toHaveBeenCalled();
+    });
+
 });

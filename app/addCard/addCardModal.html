@@ -1,10 +1,10 @@
 <div class="modal-header">
-    <input ng-model="newCard.title" required placeholder="Title" class="form-control" type="text">
+    <input ng-model="AddCardCtrl.newCard.title" required placeholder="Title" class="form-control" type="text">
 </div>
 <div class="modal-body">
-    <textarea ng-model="newCard.body" class="form-control" placeholder="Body Text" rows="5"></textarea>
+    <textarea ng-model="AddCardCtrl.newCard.body" class="form-control" placeholder="Body Text" rows="5"></textarea>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-default" ng-click="ok()">OK</button>
-    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-default" ng-click="AddCardCtrl.ok()">OK</button>
+    <button class="btn btn-default" ng-click="AddCardCtrl.cancel()">Cancel</button>
 </div>
