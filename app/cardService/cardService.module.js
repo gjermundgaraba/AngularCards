@@ -1,4 +1,4 @@
 (function() {
     'use strict';
-    angular.module('app.cardService', []);
+    angular.module('app.cardService', ['ngResource']);
 })();

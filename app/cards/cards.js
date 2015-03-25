@@ -22,7 +22,7 @@
         controller.fetchAllCards();
 
         function fetchAllCards() {
-            CardService.all().success(function (data) {
+            CardService.all().then(function (data) {
                 controller.cards = data;
             });
         }

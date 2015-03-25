@@ -21,7 +21,7 @@ describe('Cards-module controller', function(){
         ];
 
         spyOn(cardService, 'all').andReturn({
-                success: function(func) {
+                then: function(func) {
                     func(cards);
                 }});
 

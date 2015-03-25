@@ -5,9 +5,9 @@
         .module('app.cardService')
         .factory('CardService', CardServiceFactory);
 
-    CardServiceFactory.$inject = ['$http'];
+    CardServiceFactory.$inject = ['$http', '$resource', '$q'];
 
-    function CardServiceFactory($http) {
+    function CardServiceFactory($http, $resource, $q) {
         var service = {
             all: all,
             postCard: postCard,
@@ -17,7 +17,14 @@
         return service;
 
         function all() {
-            return $http.get('/cards');
+            var deferred = $q.defer();
+            $resource('/cards').query()
+                .$promise
+                .then(function(data) {
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
         }
 
         function postCard(card) {
