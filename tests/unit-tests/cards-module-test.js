@@ -20,7 +20,7 @@ describe('Cards-module controller', function(){
             }
         ];
 
-        spyOn(cardService, 'all').andReturn({
+        spyOn(cardService, 'getAllCards').andReturn({
                 then: function(func) {
                     func(cards);
                 }});

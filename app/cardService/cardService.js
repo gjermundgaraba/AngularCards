@@ -9,19 +9,22 @@
 
     function CardServiceFactory($http, $resource, $q) {
         var service = {
-            all: all,
+            getAllCards: getAllCards,
             postCard: postCard,
             deleteCard: deleteCard
         };
 
         return service;
 
-        function all() {
+        function getAllCards() {
             var deferred = $q.defer();
             $resource('/cards').query()
                 .$promise
                 .then(function(data) {
                     deferred.resolve(data);
+                })
+                .catch(function(error) {
+                    deferred.reject(error);
                 });
 
             return deferred.promise;
