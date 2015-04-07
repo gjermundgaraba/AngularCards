@@ -14,7 +14,7 @@
 
         function ok() {
             vm.newCard.createdAt = +new Date();
-            CardService.postCard(vm.newCard).success(function () {
+            CardService.postCard(vm.newCard).then(function () {
                 $rootScope.$broadcast('newCardEvent', vm.newCard);
             });
             $modalInstance.close();

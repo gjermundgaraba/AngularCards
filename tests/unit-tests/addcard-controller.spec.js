@@ -1,28 +1,29 @@
 'use strict';
-describe('addCard module controller', function(){
+describe('AddCardController', function(){
 
-    var rootScope, modalInstanceMock, ctrl, cardServiceMock;
+    var rootScope, modalInstanceMock, ctrl, CardService, deferred;
 
     beforeEach(module('app.addCard'));
-    beforeEach(inject(function($rootScope, $controller) {
+    beforeEach(module(function ($provide) {
+        CardService = {
+            postCard: function() {}
+        };
+
+        $provide.value('CardService', CardService);
+    }));
+    beforeEach(inject(function($rootScope, $controller, $q) {
+        deferred = $q.defer();
         rootScope = $rootScope.$new();
         modalInstanceMock = {
             close: function() {},
             dismiss: function() {}
         };
 
-        cardServiceMock = {
-            postCard: function() {
-                return {
-                    success: function(func) {
-                        func();
-                    }
-                };
-            }
-        };
-
-        ctrl = $controller('AddCardController', {$modalInstance: modalInstanceMock, $rootScope: rootScope, CardService: cardServiceMock});
+        ctrl = $controller('AddCardController', {$modalInstance: modalInstanceMock, $rootScope: rootScope});
     }));
+    beforeEach(function() {
+        spyOn(CardService, 'postCard').andReturn(deferred.promise);
+    });
 
     it('should have empty card', function() {
         expect(ctrl.newCard.title).toBe('');
@@ -40,6 +41,8 @@ describe('addCard module controller', function(){
         spyOn(rootScope, '$broadcast');
 
         ctrl.ok();
+        deferred.resolve();
+        rootScope.$digest();
 
         expect(rootScope.$broadcast).toHaveBeenCalledWith('newCardEvent', ctrl.newCard);
     });

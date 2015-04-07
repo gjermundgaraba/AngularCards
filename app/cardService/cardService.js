@@ -5,9 +5,9 @@
         .module('app.cardService')
         .factory('CardService', CardServiceFactory);
 
-    CardServiceFactory.$inject = ['$http', '$resource', '$q'];
+    CardServiceFactory.$inject = ['$resource', '$q'];
 
-    function CardServiceFactory($http, $resource, $q) {
+    function CardServiceFactory($resource, $q) {
         var service = {
             getAllCards: getAllCards,
             postCard: postCard,
@@ -17,8 +17,21 @@
         return service;
 
         function getAllCards() {
+            return getResourcePromise($resource('/cards').query());
+        }
+
+        function postCard(card) {
+            return getResourcePromise($resource('/cards').save(card));
+        }
+
+        function deleteCard(card) {
+            return getResourcePromise($resource('/cards/:id').delete({ id: card._id }));
+        }
+
+        function getResourcePromise(resource) {
             var deferred = $q.defer();
-            $resource('/cards').query()
+
+            resource
                 .$promise
                 .then(function(data) {
                     deferred.resolve(data);
@@ -29,14 +42,5 @@
 
             return deferred.promise;
         }
-
-        function postCard(card) {
-            return $http.post('/cards', card);
-        }
-
-        function deleteCard(card) {
-            return $http.delete('/cards/' + card._id);
-        }
-
     }
 })();

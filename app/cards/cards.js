@@ -28,7 +28,7 @@
         }
 
         function deleteCard(card) {
-            CardService.deleteCard(card).success(function () {
+            CardService.deleteCard(card).then(function () {
                 controller.fetchAllCards();
             });
         }
